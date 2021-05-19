@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BM - Bastien Manent</title>
+
+    <link rel="icon" type="image/svg" sizes="16x16" href="/SVG/logo.svg">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/mobile.css">
+    <link rel="stylesheet" href="/css/pc.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Palanquin:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Palanquin:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/gxe4hjm.css">
+    <link rel="stylesheet" href="/css/album.css">
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <div class="nav">
+
+            <img class="logo" src="/SVG/logo.svg" alt="">
+            <a href="#accueil">Accueil</a>
+            <a href="#real">Mes réalisations</a>
+            <a href="#tarifs">Mes tarifs</a>
+
+        </div>
+
+
+        <div class="contact">
+            <a href="#contact">Contact</a>
+        </div>
+
+    </header>
+
+
+    <div class="nav-mobile">
+
+        <div class="nav-logo"><img class="logo" src="/SVG/logo.svg" alt=""></div>
+        <div class="a-nav-mobile"> <a href="#real">Mes réalisations</a>
+            <a href="#tarifs">Mes tarifs</a></div>
+
+
+    </div>
+
+
+    <div class="content">
+        <img class="logo-background" src="/SVG/logo.svg" alt="">
+        <h1 class="h1-hide-mobile">Je suis
+            <span class="txt-rotate" data-period="2000"
+                data-rotate='[ "designer UX/UI.", "un peu dev.", "drôle (je crois)" ]'></span>
+        </h1>
+        <h1 class="h1-hide-pc">Designer UX/UI. <br> Jeune passionné baignant dans internet depuis 15 ans. </h1>
+        <h1 class="alternance"> <br> En quête d'une alternance</h1>
+
+        <script>
+            var TxtRotate = function (el, toRotate, period) {
+                this.toRotate = toRotate;
+                this.el = el;
+                this.loopNum = 0;
+                this.period = parseInt(period, 10) || 2000;
+                this.txt = '';
+                this.tick();
+                this.isDeleting = false;
+            };
+
+            TxtRotate.prototype.tick = function () {
+                var i = this.loopNum % this.toRotate.length;
+                var fullTxt = this.toRotate[i];
+
+                if (this.isDeleting) {
+                    this.txt = fullTxt.substring(0, this.txt.length - 1);
+                } else {
+                    this.txt = fullTxt.substring(0, this.txt.length + 1);
+                }
+
+                this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+                var that = this;
+                var delta = 300 - Math.random() * 600;
+
+                if (this.isDeleting) {
+                    delta /= 2;
+                }
+
+                if (!this.isDeleting && this.txt === fullTxt) {
+                    delta = this.period;
+                    this.isDeleting = true;
+                } else if (this.isDeleting && this.txt === '') {
+                    this.isDeleting = false;
+                    this.loopNum++;
+                    delta = 500;
+                }
+
+                setTimeout(function () {
+                    that.tick();
+                }, delta);
+            };
+
+            window.onload = function () {
+                var elements = document.getElementsByClassName('txt-rotate');
+                for (var i = 0; i < elements.length; i++) {
+                    var toRotate = elements[i].getAttribute('data-rotate');
+                    var period = elements[i].getAttribute('data-period');
+                    if (toRotate) {
+                        new TxtRotate(elements[i], JSON.parse(toRotate), period);
+                    }
+                }
+                // INJECT CSS
+                var css = document.createElement("style");
+                css.type = "text/css";
+                css.innerHTML = ".txt-rotate > .wrap { border-right: 0.04em solid #3dffbe }";
+                document.body.appendChild(css);
+            };
+        </script>
+
+
+        <h3 class="h1-hide-mobile">Jeune passionné baignant dans internet depuis 15 ans. <br> Pianiste, Gamer.</h3>
+        <h3 class="h1-hide-mobile"> <strong> En quête d'une alternance. </strong> </h3>
+
+        <div class="button">
+
+            <div class="primary-btn">
+                <h3> Me contacter </h3>
+            </div>
+            <div class="second-btn">
+                <h3> Voir mes tarifs </h3>
+            </div>
+        </div>
+
+        <div class="first-container">
+
+            <a id="card-container">
+                <h3>Site web complet <img src="/SVG/arrow.svg" alt="" class="arrow-footer"></h3>
+                <p>Interface graphique, admnistration. <br> <br> <strong> E-Commerce - 1800€ <br> Site
+                        Vitrine - 2000€ </strong> </p>
+                <p id="lien">En savoir plus - Tout les tarifs</p>
+            </a>
+            <a id="card-container">
+                <h3>Création d'interface <img src="/SVG/arrow.svg" alt="" class="arrow-footer"></h3>
+                <p>Un projet de site web ou interface ?<br> <br> <strong> E-Commerce - 1800€
+                        <br> Site Vitrine - 2000€ </strong> </p>
+                <p id="lien">En savoir plus - Tout les tarifs</p>
+            </a>
+            <a id="card-container">
+                <h3>Identité graphique <img src="/SVG/arrow.svg" alt="" class="arrow-footer"></h3>
+                <p>Univers et charte graphique<br> <br> <strong> Charte graphique - 100€ <br> Identité
+                        graphique - 200€ </strong></p>
+                <p id="lien">En savoir plus - Tout les tarifs</p>
+            </a>
+            <a id="card-container">
+                <h3>Logo et déclinaisons <img src="/SVG/arrow.svg" alt="" class="arrow-footer"></h3>
+                <p>Votre image de marque<br> <br> <strong> Logo classique - 1800€ <br> Plusieurs versions- 2000€ </strong></p>
+                <p id="lien">En savoir plus - Tout les tarifs</p>
+            </a>
+
+
+
+        </div>
+
+        <div class="bounce">
+            <a href="#about"> <img class="scroll" src="/SVG/scroll.svg" alt=""></a>
+        </div>
+
+    </div>
+
+
+
+    <div class="social">
+
+        <a href="https://www.instagram.com/2a.bastien/" class="instagram-container"><img src="/SVG/instagram-brands.svg"
+                alt="" class="instagram"></a>
+        <a href="https://www.linkedin.com/in/bastien-manent/" class="linkedin-container"><img
+                src="/SVG/linkedin-in-brands.svg" alt="" class="linkedin"></a>
+        <a href="https://www.behance.net/bastienmanent" class="dribbble-container"><img src="/SVG/dribbble-brands.svg"
+                alt="" class="dribbble"></a>
+        <a href="https://www.behance.net/bastienmanent" class="behance-container"><img src="/SVG/behance-brands.svg"
+                alt="" class="behance"></a>
+    </div>
+
+    <div id="about">
+
+        <div class="about-left">
+            <h2>Pourquoi travailler avec moi ? </h2>
+            <h3>On ne travaille pas, on projetise</h3> <br>
+            <p class="h1-hide-mobile">Le diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                diam voluptua.
+                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                sanctus
+                est Lorem ipsum dolor sit amet. Officiis delectus nobis est eaque praesentium consectetur,
+                ea voluptatum fugit ? <br> Dicta vel quis distinctio quos ab, iste at ab nemo iusto laudantium
+                consectetur molestiae voluptatem, vitae, sint omnis quasi dolore facilis? Sit veniam aperiam aliquid
+                impedit laboriosam.<br> <br> <br>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                labore et
+                dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                
+            </p>
+
+            <p class="h1-hide-pc p-about">Le diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                sed diam voluptua.
+                At vero eos et accusam et justo duo dolores et ea rebum.
+                Est Lorem ipsum dolor sit amet. Officiis delectus nobis est eaque praesentium consectetur,
+                ea voluptatum fugit ? <br> <br> Dicta vel quis distinctio quos ab, iste at ab nemo iusto laudantium
+                consectetur molestiae voluptatem, vitae, sint omnis quasi dolore facilis? Sit veniam aperiam aliquid
+                impedit laboriosam.
+            </p>
+
+
+
+            <div class="btn-more"> <a href="">Me contacter</a> </div>
+        </div>
+
+        <div class="about-right">
+
+            <div class="about-card"><img src="./SVG/team.svg" alt="" class="team">
+                <h3>Une équipe dévoué</h3> <br>
+                <p>Raphel Beaudet et moi-même vouons la même dévotions à chacun de nos projets</p>
+            </div>
+
+            <div class="about-card"><img src="./SVG/nrj.svg" alt="" class="team">
+                <h3>Polyvalance</h3> <br>
+                <p>Lors de la création de vos projets aucun détail n'est laissé aux hasard. </p>
+            </div>
+
+            <div class="about-card"><img src="./SVG/light.svg" alt="" class="team">
+                <h3>Une méthode</h3> <br>
+                <p>Réunion > Brainstorming > Analyse > Benchmark... Une méthode qui a porté ses fruits. </p>
+            </div>
+
+            <div class="about-card"><img src="./SVG/team.svg" alt="" class="team">
+                <h3>Des projets sur mersure</h3> <br>
+                <p>Chaque projet est différent, chacun ayant ses propres objectifs et KPIs. </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- <div class="skills">
+
+        <h3 class="xd-text">Adobe XD</h3>
+        <img src="/SVG/xd.svg" alt="" class="logol xdlogo">
+
+        <div class="xd skills-container">
+            <div class="skills-xd"></div>
+        </div>
+
+        <h3 class="photoshop-text">Photoshop</h3>
+        <img src="/SVG/photoshop.svg" alt="" class="logol photoshoplogo">
+
+        <div class="photoshop skills-container">
+            <div class="skills-photoshop"></div>
+        </div>
+
+
+        <h3 class="illustrator-text">Illustrator</h3>
+        <img src="/SVG/illustrator.svg" alt="" class="logol illustratorlogo">
+
+        <div class="illustrator skills-container">
+            <div class="skills-illustrator"></div>
+        </div>
+
+
+        <h3 class="html-text">HTML CSS</h3>
+        <img src="/SVG/html5-brands.svg" alt="" class="logol htmllogo">
+
+        <div class="htvl skills-container">
+            <div class="skills-html"></div>
+        </div>
+
+
+        <h3 class="javascript-text">JavaScript</h3>
+        <img src="/SVG/js-square-brands.svg" alt="" class="logol javascriptlogo">
+
+        <div class="javascript skills-container">
+            <div class="skills-javascript"></div>
+        </div>
+
+
+        <h3 class="marketing-text">Marketing</h3>
+        <img src="/SVG/shopping-basket-solid.svg" alt="" class="logol marketinglogo">
+
+        <div class="marketing skills-container">
+            <div class="skills-marketing"></div>
+        </div>
+
+    </div> -->
+
+
+    <div class="xp-titre">
+        <h2>Expériences</h2>
+    </div>
+
+
+    <div class="experience">
+
+        <div class="trait-frise">
+            <div class="frise">
+                <div class="frise-content wansso">
+                    <h3>Wanasso, 18 février 2021</strong></h3>
+                    <p class="poste">Association actions bénévoles, 2 mois</p>
+                    <p class="description">- Création du plan de communication et de la copy strategy <br> - Création
+                        d'identité visuel
+                        (charte graphique, logo) <br> - Création de la maquette du site web</p>
+
+                </div>
+
+                <div class="frise-content wansso">
+                    <h3>Wanasso, 18 février 2021</strong></h3>
+                    <p class="poste">Association actions bénévoles, 2 mois</p>
+                    <p class="description">- Création du plan de communication et de la copy strategy <br> - Création
+                        d'identité visuel
+                        (charte graphique, logo) <br> - Création de la maquette du site web</p>
+
+                </div>
+
+
+                <div class="frise-content wansso">
+                    <h3>Wanasso, 18 février 2021</strong></h3>
+                    <p class="poste">Association actions bénévoles, 2 mois</p>
+                    <p class="description">- Création du plan de communication et de la copy strategy <br> - Création
+                        d'identité visuel
+                        (charte graphique, logo) <br> - Création de la maquette du site web</p>
+
+                </div>
+
+
+
+                <div class="frise-content wansso">
+                    <h3>Wanasso, 18 février 2021</strong></h3>
+                    <p class="poste">Association actions bénévoles, 2 mois</p>
+                    <p class="description">- Création du plan de communication et de la copy strategy <br> - Création
+                        d'identité visuel
+                        (charte graphique, logo) <br> - Création de la maquette du site web</p>
+
+                </div>
+
+                <div class="frise-content wansso">
+                    <h3>Wanasso, 18 février 2021</strong></h3>
+                    <p class="poste">Association actions bénévoles, 2 mois</p>
+                    <p class="description">- Création du plan de communication et de la copy strategy <br> - Création
+                        d'identité visuel
+                        (charte graphique, logo) <br> - Création de la maquette du site web</p>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="bounce-2"><img src="/SVG/l-to-r.svg" alt="" class="l-to-r">
+        <p>Drag to see</p><img src="/SVG/r-to-l.svg" alt="" class="l-to-r">
+    </div>
+
+    <div class="portfolio">
+
+        <a href="#" class="project  project-gauche ">
+            <img src="/SVG/wanasso-cover.jpg" alt="" class="project-photo photo-gauche">
+            <div class="project-text text-gauche">
+                <h2>Wanasso</h2>
+                <p>Création d'identité visuel <strong>, 1/02/2021</strong> <img src="/SVG/arrow.svg" alt=""
+                        class="arrow"> </p>
+            </div>
+        </a>
+
+
+        <a href="#" class="project photo-forpc">
+            <div class="project-text text-droite">
+                <h2>Divonne</h2>
+                <p>Maquettage de site <strong>, 01/06/2020</strong> <img src="/SVG/arrow.svg" alt="" class="arrow"> </p>
+            </div>
+            <img src="/SVG/divonne-cover.jpg" alt="" class="project-photo photo-droite">
+        </a>
+
+        <a href="#" class="project photo-formobile">
+            <img src="/SVG/divonne-cover.jpg" alt="" class="project-photo photo-droite">
+            <div class="project-text text-droite">
+                <h2>Divonne</h2>
+                <p>Maquettage de site <strong>, 01/06/2020</strong> <img src="/SVG/arrow.svg" alt="" class="arrow"> </p>
+            </div>
+
+        </a>
+
+        <a href="#" class="project  project-gauche">
+            <img src="/SVG/tete-de-linotte.png.jpg" alt="" class="project-photo photo-gauche">
+            <div class="project-text text-gauche">
+                <h2>Linottes</h2>
+                <p>Création d'identité visuel <strong>, 1/01/2021</strong> <img src="/SVG/arrow.svg" alt=""
+                        class="arrow"> </p>
+            </div>
+        </a>
+    </div>
+
+    <div class="interview">
+        <p class="quote">"</p>
+        <p class="text-interview">L'expertise de Bastien et la qualité de son intervention nous permet désormais de
+            recruter
+            plus efficacement, de trouver les candidats adaptés à nos besoins et à nos valeurs, et puis également de
+            fidéliser nos collaborateurs.</p>
+        <p class="auteur"> <strong>Le Furher Adolf Hitler</strong> <br>Chancelier</p>
+        <img src="https://pbs.twimg.com/media/CuPy3W6WIAExtBF.png" alt="" class="auteur-img">
+    </div>
+
+
+
+
+
+    <div class="footer">
+        <a href="">
+            <p class="mail">mail</p><img src="/SVG/arrow.svg" alt="" class="arrow-footer arrow-mail">
+        </a>
+
+        <a href="">
+            <p class="linkedin">linkedin</p><img src="/SVG/arrow.svg" alt="" class="arrow-footer arrow-linkedin">
+        </a>
+
+        <a href="">
+            <p class="behance">behance</p><img src="/SVG/arrow.svg" alt="" class="arrow-footer arrow-behance">
+        </a>
+
+        <a href="">
+            <p class="dribbble">dribbble</p><img src="/SVG/arrow.svg" alt="" class="arrow-footer arrow-dribbble">
+        </a>
+
+        <a href="">
+            <p class="instagram">instagram</p> <img src="/SVG/arrow.svg" alt="" class="arrow-footer arrow-instagram">
+        </a>
+    </div>
+
+
+    <div class="mention">
+        <img src="/SVG/logo.svg" alt="">
+        <p>Crée par le grand Manent</p> <img src="/SVG/logo.svg" alt="">
+    </div>
+
+
+    <div class="cursor"></div>
+    <div class="cursorSecond"></div>
+
+
+
+
+
+    <!-- ----------------------------------------------------------------------------------------- -->
+
+
+
+    <script type="text/javascript" src="vanilla-tilt.js"></script>
+    <script>
+        VanillaTilt.init(document.querySelectorAll(
+            "#card-container, .primary-btn, .second-btn, .about-card",
+        ), {
+            max: 7,
+            speed: 5,
+            glare: true,
+            "max-glare": 0.4,
+        });
+    </script>
+
+
+
+    <script>
+        const cursor = document.querySelector('.cursor');
+        const cursorSecond = document.querySelector('.cursorSecond');
+
+        document.addEventListener('mousemove', e => {
+            cursor.setAttribute("style", "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;");
+            cursorSecond.setAttribute("style", "top: " + (e.pageY - 7) + "px; left: " + (e.pageX - 7) +
+                "px;")
+        });
+
+
+        let buttons = document.querySelectorAll('.second-btn, .primary-btn');
+        let show = document.querySelectorAll('a, .second-btn, .primary-btn, .experience');
+
+        show.forEach(link => {
+            link.addEventListener("mouseleave", () => {
+
+                cursor.classList.remove("link-grow");
+            });
+            link.addEventListener("mouseover", () => {
+                cursor.classList.add("link-grow");
+            });
+        });
+
+
+        let footerHover = document.querySelectorAll('.mail, .linkedin, .instagram, .dribbble, .behance');
+
+        footerHover.forEach(link => {
+            link.addEventListener("mouseleave", () => {
+
+                cursor.classList.remove("hover-footer");
+            });
+            link.addEventListener("mouseover", () => {
+                cursor.classList.add("hover-footer");
+            });
+        });
+
+
+        document.addEventListener('click', () => {
+            cursor.classList.add("expand");
+            // cursorSecond.classList.add("expand");
+            setTimeout(() => {
+                cursor.classList.remove("expand");
+                // cursorSecond.classList.remove("expand");
+            }, 500)
+        })
+
+
+
+        const slider = document.querySelector('.experience');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove('active');
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 1; //scroll-fast
+            slider.scrollLeft = scrollLeft - walk;
+            console.log(walk);
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>
